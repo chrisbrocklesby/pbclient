@@ -50,7 +50,11 @@ func (c *Client) LoginUser(collection, email, password string) error {
 func LoginUser(collection, email, password string) error {
 	return mustDefault().LoginUser(collection, email, password)
 }
+
+// LoginAdmin authenticates the default client as an admin/superuser.
 func LoginAdmin(email, password string) error { return mustDefault().LoginAdmin(email, password) }
+
+// LoginSuperAdmin authenticates the default client as a superuser.
 func LoginSuperAdmin(email, password string) error {
 	return mustDefault().LoginSuperAdmin(email, password)
 }
@@ -75,7 +79,8 @@ func (c *Client) LoginSuperAdmin(email, password string) error {
 	return nil
 }
 
-// LoginAdmin tries v0.23+ superusers endpoint first, then falls back to legacy admins endpoint.
+// LoginAdmin authenticates with the superusers endpoint first and falls back
+// to the legacy admins endpoint.
 func (c *Client) LoginAdmin(email, password string) error {
 	if err := c.LoginSuperAdmin(email, password); err == nil {
 		return nil

@@ -20,6 +20,7 @@ type RealtimeEvent struct {
 	Data  json.RawMessage
 }
 
+// Realtime manages PocketBase realtime subscriptions over SSE.
 type Realtime struct {
 	c *Client
 
@@ -36,6 +37,7 @@ type Realtime struct {
 	errOnce sync.Once
 }
 
+// NewRealtime creates a realtime client using the provided client or default client.
 func NewRealtime(params ...*Client) *Realtime {
 	var c *Client
 	if len(params) > 0 {
@@ -47,6 +49,7 @@ func NewRealtime(params ...*Client) *Realtime {
 	return &Realtime{c: c, Events: make(chan RealtimeEvent, 128), readyCh: make(chan struct{})}
 }
 
+// ClientID returns the current realtime client ID.
 func (rt *Realtime) ClientID() string {
 	rt.mu.RLock()
 	defer rt.mu.RUnlock()
@@ -87,6 +90,7 @@ func (rt *Realtime) Connect() error {
 	}
 }
 
+// Subscribe sets active subscriptions and applies them if already connected.
 func (rt *Realtime) Subscribe(subscriptions ...string) error {
 	rt.mu.Lock()
 	rt.subscriptions = append([]string(nil), subscriptions...)
@@ -99,6 +103,7 @@ func (rt *Realtime) Subscribe(subscriptions ...string) error {
 	return rt.applySubscriptions(cid, subscriptions)
 }
 
+// Close stops reconnect loops, waits for shutdown, and closes the Events channel.
 func (rt *Realtime) Close() {
 	if rt.cancel != nil {
 		rt.cancel()

@@ -10,7 +10,7 @@ Replace `github.com/chrisbrocklesby/pbclient` with your repo path after publishi
 go get github.com/chrisbrocklesby/pbclient
 ```
 
-Go 1.20+ recommended (module currently set to `app`; update to your path before releasing).
+Go 1.20+ recommended.
 
 ## Quickstart
 
