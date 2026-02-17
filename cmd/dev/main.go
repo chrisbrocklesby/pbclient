@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strings"
 
-	pbclient "app"
+	pbclient "github.com/chrisbrocklesby/pbclient"
 )
 
 type Post struct {
