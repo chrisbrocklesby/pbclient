@@ -13,6 +13,7 @@ func SetDefault(c *Client) {
 	defaultMu.Unlock()
 }
 
+// Default returns the package-level default client, if initialized.
 func Default() *Client {
 	defaultMu.RLock()
 	defer defaultMu.RUnlock()

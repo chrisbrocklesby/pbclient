@@ -27,6 +27,7 @@ type Config struct {
 	Logger *log.Logger
 }
 
+// Client is a PocketBase API client.
 type Client struct {
 	baseURL string
 	http    *http.Client
@@ -46,6 +47,8 @@ func normalizeBaseURL(s string) string {
 	return strings.TrimRight(s, "/")
 }
 
+// NewClient creates a client from config and optionally performs initial login
+// when auth credentials are provided.
 func NewClient(cfg Config) (*Client, error) {
 	base := normalizeBaseURL(cfg.BaseURL)
 	timeout := cfg.Timeout
@@ -71,6 +74,7 @@ func NewClient(cfg Config) (*Client, error) {
 	return c, nil
 }
 
+// WithContext sets the context used by subsequent client requests.
 func (c *Client) WithContext(ctx context.Context) *Client {
 	if ctx == nil {
 		ctx = context.Background()
@@ -79,12 +83,14 @@ func (c *Client) WithContext(ctx context.Context) *Client {
 	return c
 }
 
+// SetToken sets the bearer token used for authenticated requests.
 func (c *Client) SetToken(token string) {
 	c.mu.Lock()
 	c.token = token
 	c.mu.Unlock()
 }
 
+// Token returns the current bearer token.
 func (c *Client) Token() string {
 	c.mu.RLock()
 	defer c.mu.RUnlock()
