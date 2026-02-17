@@ -4,10 +4,10 @@ Lightweight, production-friendly Go client for PocketBase using only `net/http`,
 
 ## Install
 
-Replace `github.com/you/pbclient` with your repo path after publishing:
+Replace `github.com/chrisbrocklesby/pbclient` with your repo path after publishing:
 
 ```bash
-go get github.com/you/pbclient
+go get github.com/chrisbrocklesby/pbclient
 ```
 
 Go 1.20+ recommended (module currently set to `app`; update to your path before releasing).
@@ -20,7 +20,7 @@ package main
 import (
     "log"
 
-    pbclient "github.com/you/pbclient"
+    pbclient "github.com/chrisbrocklesby/pbclient"
 )
 
 type Post struct {
