@@ -89,3 +89,5 @@ if err := c.WaitReady(10 * time.Second); err != nil { /* handle */ }
 ## Example app
 
 `main.go` shows a minimal HTTP demo that lists and mutates `posts` and `users` collections using the package-level helpers. Update credentials/base URL as needed.
+
+[![Go Reference](https://pkg.go.dev/badge/github.com/chrisbrocklesby/pbclient.svg)](https://pkg.go.dev/github.com/chrisbrocklesby/pbclient)
