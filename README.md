@@ -1,4 +1,4 @@
-# PocketBase Go Client (pbclient) v1.0.3
+# PocketBase Go Client (pbclient) v1.0.4
 
 Lightweight, production-friendly Go client for PocketBase using only `net/http`, typed collections via generics, batch support, and SSE realtime with automatic reconnect.
 
